@@ -9,6 +9,7 @@ socket.emit('login', jmeno);
 send.addEventListener('click', function(e) {
     if(message.value)
         socket.emit('chat', message.value, jmeno);
+        message.value = "";
 });
 
 socket.on('chat', (msg,name1) => {
