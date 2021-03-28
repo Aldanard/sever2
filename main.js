@@ -10,8 +10,13 @@ const io = socketio(server);
 app.use(express.static(path.join(__dirname, 'public')));
 
 io.on('connection', (socket) => {
-    socket.on('chat',msg => {
-        io.emit('chat', msg);
+    socket.on('chat', (msg,name) => {
+        io.emit('chat', msg, name);
+    });
+
+    socket.on('login', name => {
+        console.log(name);
+        io.emit('chat', "se přihlásil.", name);
     });
 });
 
